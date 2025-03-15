@@ -74,7 +74,7 @@ CREATE TABLE `products_historic` (
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 ## 4️⃣ Utilizando o sistema
-Após configurar corretamente o sistema, navegue para a raiz do projeto e utilize o comando ```php artisan serve```, com esse comando o sistema será iniciado e pode ser utlizado acessando em qualquer navegador a URL que aparece no console após o comando, geralmente ```127.0.0.1:800```.
+Após configurar corretamente o sistema, vá até a raiz do projeto e utilize o comando ```php artisan serve```, com esse comando o sistema será iniciado e pode ser acessado em qualquer navegador utilizando a URL que aparecerá no console após o comando, geralmente ```127.0.0.1:8000```.
 
 
 
