@@ -1,66 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 Gerenciador de Estoque
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![image](https://github.com/user-attachments/assets/68738382-eb23-4478-94ce-33f3fcb0907b)
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠️ Tecnologias Utilizadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+O Gerenciador de Estoque foi desenvolvido utilizando as seguintes tecnologias:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **PHP** ⚡
+- **Lavarel** ⚛️
+- **Composer** 🎨
+- **MySQL** 🏧
 
-## Learning Laravel
+## 🚀 Como executar o projeto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Siga os passos abaixo para rodar o projeto em seu ambiente local:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 1️⃣ Clone o repositório
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Clique no botão "Clone" acima ou execute o seguinte comando no terminal:
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/crook100/unifeob-desenvolvimento-desktop
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Isso criará uma cópia local do repositório em seu ambiente.
 
-### Premium Partners
+### 2️⃣ Instale os requisitos
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Para poder rodar o projeto, você precisará ter em seu computador instalado os seguintes programas:
+ - PHP (v8.0+)
+ - Composer
+ - XAMPP (ou qualquer outro aplicativo que disponibilize um banco de dados MySQL)
 
-## Contributing
+### 3️⃣ Instalação e Configuração
+Após clonar o repositório e instalar os requisitos, utilize o comando ``composer install`` para instalar as dependencias do projeto.
+Em seguida, abra o arquivo ``.env`` na raiz do projeto e altere as configurações de conexão com o banco de dados, seguindo o exemplo abaixo:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=desenvolvimento_desktop
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Após configurar o banco, navegue para a raiz do projeto e utilize o comando ``php artisan migrate:fresh`` para criar as tabelas do banco.
 
-## Code of Conduct
+Caso prefira, segue abaixo as queries SQL nativas para criação das tabelas:
+```
+CREATE TABLE `products` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `description` varchar(1024) DEFAULT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+CREATE TABLE `products_historic` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` bigint(20) unsigned NOT NULL,
+  `operation` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `products_historic_product_id_foreign` (`product_id`),
+  CONSTRAINT `products_historic_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+```
+## 4️⃣ Utilizando o sistema
+Após configurar corretamente o sistema, navegue para a raiz do projeto e utilize o comando ```php artisan serve```, com esse comando o sistema será iniciado e pode ser utlizado acessando em qualquer navegador a URL que aparece no console após o comando, geralmente ```127.0.0.1:800```.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## 5️⃣ Diagrama do banco de dados
+![image](https://github.com/user-attachments/assets/0e3ad39b-ee6c-46e5-8f2d-27e503852570)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
