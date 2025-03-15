@@ -44,6 +44,8 @@ DB_DATABASE=desenvolvimento_desktop
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+Lembre-se que você precisa já ter criado o banco de dados em branco no XAMPP antes de executar os próximos comandos.
+
 
 Após configurar o banco, navegue para a raiz do projeto e utilize o comando ``php artisan migrate:fresh`` para criar as tabelas do banco.
 
