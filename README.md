@@ -81,5 +81,8 @@ Após configurar corretamente o sistema, vá até a raiz do projeto e utilize o 
 ## 5️⃣ Diagrama do banco de dados
 ![image](https://github.com/user-attachments/assets/0e3ad39b-ee6c-46e5-8f2d-27e503852570)
 
+## 🧑 Integrantes do grupo
+- Thiago de Souza Barrado RA: 24001296
+- Jonathan Cristhiovane da Silva Macedo RA: 24000883
 
 
