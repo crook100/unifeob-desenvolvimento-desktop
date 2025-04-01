@@ -52,9 +52,15 @@
             ],
             'name' => [
                 'header' => 'Nome',
+                'model_function' => function ($model) {
+                    return $model->getName();
+                },
             ],
             'quantity' => [
                 'header' => 'Estoque',
+                'model_function' => function ($model) {
+                    return $model->getQuantity();
+                },
             ],
             'description' => [
                 'header' => 'Descrição',

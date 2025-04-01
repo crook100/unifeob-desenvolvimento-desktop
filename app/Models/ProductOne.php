@@ -13,23 +13,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $description Product description
  * @property int $quantity Quantity in stock
  */
-class Product extends Model
+class ProductOne extends ProductBase
 {
-    protected $table = "products";
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        "name",
-        "description",
-        "quantity",
-    ];
-
-    public function historic(): HasMany
+    public function getName(): string
     {
-        return $this->hasMany(ProductHistoric::class);
+        return "Produto 1: " . $this->name;
     }
 }

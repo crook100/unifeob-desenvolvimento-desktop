@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\ProductOne;
 use App\Models\ProductHistoric;
 use Illuminate\Http\Request;
 
@@ -10,13 +10,13 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = ProductOne::all();
         return view("products.index", compact("products"));
     }
 
     public function historic($id)
     {
-        $product = Product::find($id);
+        $product = ProductOne::find($id);
         $historic = $product->historic;
         return view("products.historic", compact("product", "historic"));
     }
@@ -28,7 +28,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $product = new Product($request->only([
+        $product = new ProductOne($request->only([
             "name", "description", "quantity"
         ]));
 
@@ -44,7 +44,7 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        $product = Product::find($id);
+        $product = ProductOne::find($id);
 
         if($product->delete())
         {
@@ -57,15 +57,13 @@ class ProductController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = ProductOne::find($id);
         $new_quantity = $request->post("quantity");
 
         $diff = $new_quantity - $product->quantity;
         if($diff != 0)
         {
-            $product->quantity = $new_quantity;
-
-            if($product->save())
+            if($product->setQuantity($new_quantity))
             {
                 $product->historic()->create([
                     "operation" => ($diff < 0 ? ProductHistoric::OPERATION_SUB : ProductHistoric::OPERATION_ADD),
